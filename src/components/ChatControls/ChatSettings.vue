@@ -32,59 +32,58 @@ export default {
 </script>
 
 <style>
-.hide{
-  display:hidden;
+.hide {
+  display: hidden;
   z-index: -1;
   position: relative;
-  right:1000px;
-  top:10000px;
+  right: 1000px;
+  top: 10000px;
 }
-.settings-menu-container{
+.settings-menu-container {
   position: fixed;
-  width:240px;
-  height:200px;
+  width: 240px;
+  height: 200px;
   top: 44px;
   left: 182px;
-  background-color:white;
-  border:1px solid black;
+  background-color: white;
+  border: 1px solid black;
   box-sizing: border-box;
-  display:block;
-  z-index:1000;
+  display: block;
+  z-index: 1000;
 }
-.settings-icon-container{
-  margin-top:5px;
+.settings-icon-container {
+  margin-top: 5px;
   display: inline;
   float: right;
 }
-.title-chat-container{
+.title-chat-container {
   padding: 10px 10px 10px 10px;
   font-weight: 500;
-  font-size:1.4em;
+  font-size: 1.4em;
   text-align: left;
-  border-bottom:1px solid #373737;
-  font-family: 'Russo One', sans-serif;
-  background-color:#0c0d10;
+  border-bottom: 1px solid #373737;
+  font-family: "Russo One", sans-serif;
+  background-color: #0c0d10;
 }
 
-.title-chat-title{
+.title-chat-title {
   display: inline-block;
 }
-.setting-icon>svg{
-    width: 24px;
-    height: 24px;
-    line-height: 38px;
-    fill: #a9a9aa;
-    cursor: pointer;
-    transition:all 0.2s;
-    transform-origin: center;
+.setting-icon > svg {
+  width: 24px;
+  height: 24px;
+  line-height: 38px;
+  fill: #a9a9aa;
+  cursor: pointer;
+  transition: all 0.2s;
+  transform-origin: center;
 }
-.setting-icon>svg:hover{
-  fill:white;
+.setting-icon > svg:hover {
+  fill: white;
   transform: rotate(90deg);
 }
-.setting-icon{
+.setting-icon {
   display: inline;
   float: right;
 }
-
 </style>
