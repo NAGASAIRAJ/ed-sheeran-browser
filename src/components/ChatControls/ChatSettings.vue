@@ -3,15 +3,12 @@
       <div class="title-chat-title">Edyst</div>
        <div class="settings-icon-container" >
          <span v-html="icons.settingIcon" class="setting-icon" @click="states.settingsVisible=!states.settingsVisible">{{icons.settingIcon}}</span>
-
        </div>
-
        <div class="settings-menu-container animated" v-if="states.settingsVisible">
            <ul>
              <li>A</li>
            </ul>
-         </div>
-
+      </div>
      </div>
 </template>
 
