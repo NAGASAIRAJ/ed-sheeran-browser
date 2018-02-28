@@ -1,6 +1,8 @@
 <template>
    <div class=" right-chat-container">
-      <ChatRoom/>
+      <ChatRoom
+      :roomObj = "getCurrentActiveRoom"
+      />
       <ChatInputBox/>
     </div>
 </template>
@@ -9,9 +11,28 @@
 
 import ChatRoom from '@/components/ChatMain/ChatWindow/ChatRoom.vue'
 import ChatInputBox from '@/components/ChatMain/ChatInput/ChatInputBox.vue'
-export default {
-  components: { ChatRoom, ChatInputBox }
 
+import { mapActions, mapGetters } from 'vuex'
+
+export default {
+  components: { ChatRoom, ChatInputBox },
+  data () {
+    return {
+
+    }
+  },
+  computed: {
+    ...mapGetters('rooms', [
+      'getRooms', 'getCurrentActiveRoom'
+    ])
+  },
+  methods: {
+    ...mapActions('rooms', [
+      'LOAD_ROOMS'
+    ])
+  },
+  mounted () {
+  }
 }
 </script>
 
@@ -32,11 +53,6 @@ export default {
   display: inline;
   color: grey;
   padding-left: 6px;
-}
-.chat-thread-unit {
-  display: inline-block;
-  box-sizing: border-box;
-  margin-bottom: 10px;
 }
 
 /*

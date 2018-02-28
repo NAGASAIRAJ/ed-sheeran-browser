@@ -3,77 +3,88 @@
     <div class="chat-main-container">
 
        <div class="chat-main-header">
-         <div class="room-name">Pranay Kothapalli <span class="user-name-attached">(@kotAPI)</span> </div>
+         <div class="room-name">
+           <span>{{roomObj.name}} </span>
+           <span class="user-name-attached" v-if="roomObj.type==='user'">@username</span>
+        </div>
          <div class="room-controls">
-           <div class="room-control-element starred-icon active-star-icon" v-html="favoriteChat?heartActiveIcon:heartInactiveIcon " @click="makeFavoriteChat">
-
+           <div class="room-control-element starred-icon active-star-icon"
+            v-html="roomObj.favorite?heartActiveIcon:heartInactiveIcon "
+            @click="makeFavoriteChat">
            </div>
            <div class="room-control-element">
-             <span class="available-status-icon"></span>
-             <span>available</span>
+             <span v-if="roomObj.type=='user'" class="available-status-icon"></span>
+             <span v-if="roomObj.type=='user'">{{roomObj.userStatus}}available</span>
            </div>
            <div class="room-control-element room-description-content">
-             I'm a pickle!
+            {{roomObj.description}}
            </div>
          </div>
        </div>
-
-      <div class="chat-thread-content">
-        <div v-for="x in 10" class="chat-thread-unit">
-          <div class="user-profile-picture" style="background-image:url(http://dp.topcovers4fb.com/wp-content/uploads/2015/08/Forever-In-Love-Display-Picture.jpeg)">
-
-          </div>
-          <div class="user-chat-content">
-            <div class="user-thread-unit-user">Pranay Kothapalli {{x}}</div>
-            <div class="user-thread-unit-post-time">22:00 AM</div>
-            <div class="user-thread-post-content">
-            Notification.vibrate Read only
-Specifies a vibration pattern for devices with vibration hardware to emit.
-Unsupported properties
-The following properties are listed in the most up-to-date spec but are not supported in any browsers yet. It is advisable to keep checking back regularly to see if the status of these has updated, and let us know if you find any out of date information.
-
-Notification.noscreen Read only
-Specifies whether the notification firing should enable the device's screen or not.
-Notification.sound Read only
-Specifies a sound resource to play when the notification fires, in place of the default system notification sound.
-Notification.sticky Read only
-Specifies whether the notification should be 'sticky', i.e. not easily clearable by the user.
-Event handlers
-Notification.onclick
-A handler for the click event. It is triggered each time the user clicks on the notification.
-Notification.onerror
-A handler for the error event. It is triggered each time the notification encounters an error.
-Obsolete handlers
-            </div>
-          </div>
-          <div>
-
-          </div>
-        </div>
-     </div>
+       <ChatThread :messages="messagesObj"/>
   </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+import ChatThread from './ChatThread'
 import icons from '@/components/Assets/SVGIcons/Icons.js'
 export default {
+  components: {ChatThread},
+  props: ['roomObj'],
   data () {
     return {
+      messagesObj: [
+        {'id': '1',
+          'text': 'Hi @suprememoocow !',
+          'html': '<span>Hi @suprememoocow !</span> `abc`',
+          'sent': '2014-03-25T11:51:32.289Z',
+          'editedAt': '2014-03-25T12:13:02.985Z',
+          'fromUser': {
+            'id': '1',
+            'username': 'suprememoocow',
+            'displayName': 'Andrew Newdigate',
+            'url': '/suprememoocow',
+            'avatarUrlSmall': 'https://avatars.githubusercontent.com/u/594566?',
+            'avatarUrlMedium': 'https://avatars.githubusercontent.com/u/594566?'
+          },
+          'unread': false,
+          'readBy': 0,
+          'mentions': [{'screenName': 'suprememoocow', 'userId': '53307831c3599d1de448e19a'}]
+        }
+      ],
+
       heartActiveIcon: icons.heartActiveIcon,
       heartInactiveIcon: icons.heartInactiveIcon,
       favoriteChat: false
     }
   },
+  computed: {
+    ...mapGetters('rooms', [
+      'getRooms'
+    ])
+  },
   methods: {
+
     makeFavoriteChat () {
       this.favoriteChat = !this.favoriteChat
     }
+  },
+  mounted () {
+
   }
 }
 </script>
 
 <style>
+.chat-thread-unit {
+  display: inline-block;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
 svg{
   position: relative;
   height:100%;
@@ -97,6 +108,7 @@ svg{
 
 .user-name-attached{
   color:grey;
+  font-size:0.6em;
 }
 .room-description-content{
   font-family: 'Arvo', serif;
