@@ -2,7 +2,7 @@
    <div class="left-chat-container">
      <ChatSettings/>
 
-          <div class="channel-container">
+          <div class="group-container">
           <div class="user-profile row">
                   <div class="user-display-pic three columns"></div>
                   <div class="nine columns">
@@ -15,30 +15,20 @@
 
                   </div>
                 </div>
-                  <div>
-                      <ul class="channels-list">
-                        CHANNELS (22)
-                          <li v-for="x in 20" class="channel-list-element"># Channel  {{x}}</li>
+                <Channels/>
+                <Users/>
 
-                        </ul>
-                </div>
-
-                <div>
-                      <ul class="channels-list">
-                        DIRECT MESSAGES (22)
-                          <li v-for="x in 20" class="channel-list-element"># User  {{x}}</li>
-
-                        </ul>
-            </div>
         </div>
 
     </div>
 </template>
 
 <script>
-import ChatSettings from '@/components/ChatControls/ChatSettings';
+import ChatSettings from '@/components/ChatControls/ChatSettings'
+import Channels from '@/components/ChatControls/ChatControlSections/Channels'
+import Users from '@/components/ChatControls/ChatControlSections/Users'
 export default {
-  components: { ChatSettings }
+  components: { ChatSettings, Channels, Users }
 }
 </script>
 
@@ -51,17 +41,7 @@ export default {
   height: 100%;
   overflow: hidden;
 }
-.channels-list {
-  margin-top: 22px;
-  list-style: none;
-  padding-left: 28px;
-}
-.channel-list-element {
-  margin: 0px;
-  padding: 0px;
-  color: grey;
-  padding-left: 2px;
-}
+
 .user-online-status {
   width: 12px;
   height: 12px;
@@ -106,7 +86,7 @@ export default {
   width: 250px;
 }
 
-.channel-container {
+.group-container {
   overflow-y: scroll;
   height: calc(100% - 54px);
 }
@@ -115,17 +95,17 @@ export default {
  *  STYLE 6
  */
 
-.channel-container::-webkit-scrollbar-track {
+.group-container::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #f5f5f5;
 }
 
-.channel-container::-webkit-scrollbar {
+.group-container::-webkit-scrollbar {
   width: 10px;
   background-color: #f5f5f5;
 }
 
-.channel-container::-webkit-scrollbar-thumb {
+.group-container::-webkit-scrollbar-thumb {
   background-color: #f90;
   background-image: -webkit-linear-gradient(
     45deg,
