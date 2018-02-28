@@ -16,7 +16,9 @@
   "dependencies": {
     "vue": "^2.5.2",
     "vue-emoji-mart": "^1.0.5",
-    "vue-router": "^3.0.1"
+    "vue-markdown": "^2.2.4",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
